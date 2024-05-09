@@ -1,5 +1,6 @@
 import glob
 import sys
+import PIL
 
 from torchvision import transforms
 from PIL import Image
@@ -46,21 +47,21 @@ class dataload_valid(Dataset):
 
 
 class dataload_train(Dataset):
-    def __init__(self,  path='', H=600, W=480, aug=True, phase='train'):
+    def __init__(self,  path='dataset/Cat&Dog/Train_set', aug=True, phase='train'):
 
         self.path_mtx = path
         self.phase = phase
-        self.mask_num = int(len(self.path_mtx[0]))
+        # self.mask_num = int(len(self.path_mtx[0]))
         self.data_num = len(self.path_mtx)
 
         self.aug=aug
-        self.H = H
-        self.W = W
+        # self.H = H
+        # self.W = W
 
-        self.mask_trans = transforms.Compose([
-                                              # transforms.Resize((224, 224)),
-                                              # mytransforms.Affine(0, translate=[0, 0], scale=1, fillcolor=0),
-                                              transforms.ToTensor()])
+        # self.mask_trans = transforms.Compose([
+        #                                       # transforms.Resize((224, 224)),
+        #                                       # mytransforms.Affine(0, translate=[0, 0], scale=1, fillcolor=0),
+        #                                       transforms.ToTensor()])
 
         self.norm = mytransforms.Compose([transforms.Normalize((0.5,), (0.5,))])
         self.col_trans = transforms.Compose([transforms.ColorJitter(brightness=random.random())])

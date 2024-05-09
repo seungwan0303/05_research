@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 import torchvision
 from torchvision import transforms, datasets, models
-aaa
+
 from numpy import matlib
 import os
 import sys
@@ -26,7 +26,7 @@ def gray_to_rgb(gray):
     return rgb
 
 class CustomDataset(Dataset):
-    def __init__(self, file_path='dataset/Cat&Dog/Train_set', H=600, W=480, pow_n=3, aug=True):
+    def __init__(self, file_path='dataset/Cat&Dog/Train_set', aug=True):
 
         self.data_info = torchvision.datasets.ImageFolder(root=file_path)
         # print(len(self.mask_num))
@@ -34,14 +34,14 @@ class CustomDataset(Dataset):
         # print(self.data_num)
         self.path_mtx = np.array(self.data_info.samples)[:, :1].reshape(self.data_num)
         # all data path loading  [ masks  20 , samples 150]
-        # self.images = [Image.open(path) for path in self.path_mtx.reshape(-1)]  # all image loading
-        # self.path1D = self.path_mtx.reshape(-1)  # all image path list
+        self.images = [Image.open(path) for path in self.path_mtx.reshape(-1)]  # all image loading
+        self.path1D = self.path_mtx.reshape(-1)  # all image path list
         # print(self.path_mtx)
         self.aug=aug
-        self.pow_n = pow_n
+        # self.pow_n = pow_n
         self.task = file_path
-        self.H = H
-        self.W = W
+        # self.H = H
+        # self.W = W
 
         # augmenation of img and masks
         # self.mask_trans = transforms.Compose([transforms.Resize((self.H, self.W)),
@@ -58,19 +58,20 @@ class CustomDataset(Dataset):
                                              ])
 
     def __len__(self):
-        return len(self.data_num)
+        return self.data_num
 
     def __getitem__(self, idx):
-        data = torch.empty(self.data_num, self.H, self.W, dtype=torch.float)
+        data = torch.empty(self.data_num, dtype=torch.float)
 
         if self.aug==True:
-            self.mask_trans.transforms[2].degrees = random.randrange(-25, 25)
-            self.mask_trans.transforms[2].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
-            self.mask_trans.transforms[2].scale= random.uniform(0.9, 1.1)
+# self.col_trans.transforms[2].degrees = random.randrange(-5, 5)
+# self.col_trans.transforms[2].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
+# self.col_trans.transforms[2].scale= random.uniform(0.9, 1.1)
 
-        for k in range(0, self.mask_num):
-            X = Image.open(self.path_mtx[k, idx])
-            if k == 0 and self.aug == True: X = self.col_trans(X)
+            for k in range(0, self.data_num):
+                X = Image.open(self.path_mtx[idx])
+                if k == 0 and self.aug == True:
+                    X = self.col_trans(X)
             # mask[k] = self.mask_trans(X)
 
         # input, heat = self.norm(mask[0:1]), mask[1]
@@ -97,10 +98,10 @@ class DoubleConv(nn.Module):
         self.double_conv = nn.Sequential(
             nn.Conv2d(in_channels, mid_channels, kernel_size=3, padding=1, bias=False),
             nn.InstanceNorm2d(out_channels, affine=True),
-            nn.ReLU(inplace=True),
+            nn.Sigmoid(),
             nn.Conv2d(mid_channels, out_channels, kernel_size=3, padding=1, bias=False),
             nn.InstanceNorm2d(out_channels, affine=True),
-            nn.ReLU(inplace=True)
+            nn.Sigmoid()
         )
     def forward(self, x):
         return self.double_conv(x)

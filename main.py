@@ -23,14 +23,15 @@ from torch.optim import lr_scheduler
 import time
 import copy
 
+os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 data_path = "dataset/Cat&Dog"
 batch_size = 16
 H = 224
 W = 224
 
 Dataloaders = {
-    'train': DataLoader(CustomDataset(file_path="dataset/Cat&Dog/Train_set", H=H, W=W, pow_n=10, aug=True), batch_size=batch_size, shuffle=True, num_workers=5),
-    'valid': DataLoader(CustomDataset(file_path="dataset/Cat&Dog/Valid_set", H=H, W=W, pow_n=10, aug=False), batch_size=batch_size, shuffle=False, num_workers=5)
+    'train': DataLoader(CustomDataset(file_path="dataset/Cat&Dog/Train_set", aug=True), batch_size=batch_size, shuffle=True, num_workers=5),
+    'valid': DataLoader(CustomDataset(file_path="dataset/Cat&Dog/Valid_set", aug=False), batch_size=batch_size, shuffle=False, num_workers=5)
 }
 
 def L1_loss(pred, target):
@@ -43,18 +44,18 @@ def L2_loss(pred, target):
     metrics['loss'] += loss.data.cpu().numpy() * target.size(0)
     return loss
 
-device_txt = "cuda:1"
+device_txt = "cuda:0"
 device = torch.device(device_txt if torch.cuda.is_available() else "cpu")
 num_class = 1
 
 if __name__ == '__main__':
     model = network.UNet(1, num_class).to(device)
 
-    num_epochs = 2000
+    num_epochs = 1000
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.9)
-    print("****************************GPU : ", device)
+    print("**************GPU Learning Start**************** : ", device)
 
     best_model_wts = copy.deepcopy(model.state_dict())
     best_loss = 1e10
@@ -69,18 +70,18 @@ if __name__ == '__main__':
 
         for phase in uu:
             if phase == 'train':
-                scheduler.step()
                 model.train()  # Set model to training mode
             else:
                 model.eval()  # Set model to evaluate mode
 
+            scheduler.step()
             metrics = defaultdict(float)  # 성능 값 중첩
             epoch_samples = 0
             pbar = tqdm.tqdm(Dataloaders[phase], unit='batch')
+
             # with tqdm.tqdm(dataloaders['train'], unit='batch', unit_scale=True) as data:
             for inputs, labels in pbar:
                 inputs = inputs.to(device)
-                # print(inputs.shape)
                 labels = labels.to(device)
                 optimizer.zero_grad()
 
