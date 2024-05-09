@@ -70,11 +70,11 @@ if __name__ == '__main__':
 
         for phase in uu:
             if phase == 'train':
+                scheduler.step()
                 model.train()  # Set model to training mode
             else:
                 model.eval()  # Set model to evaluate mode
 
-            scheduler.step()
             metrics = defaultdict(float)  # 성능 값 중첩
             epoch_samples = 0
             pbar = tqdm.tqdm(Dataloaders[phase], unit='batch')
