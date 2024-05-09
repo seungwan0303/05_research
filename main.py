@@ -14,6 +14,7 @@ from torchvision import transforms, datasets, models
 from PIL import Image
 import random
 
+from utils.dataload import dataload_train
 from net import *
 import net as network
 from collections import defaultdict
@@ -24,14 +25,12 @@ import time
 import copy
 
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
-data_path = "dataset/Cat&Dog"
+data_path = "dataset/Dog Segmentation"
 batch_size = 16
-H = 224
-W = 224
 
 Dataloaders = {
-    'train': DataLoader(CustomDataset(file_path="dataset/Cat&Dog/Train_set", aug=True), batch_size=batch_size, shuffle=True, num_workers=5),
-    'valid': DataLoader(CustomDataset(file_path="dataset/Cat&Dog/Valid_set", aug=False), batch_size=batch_size, shuffle=False, num_workers=5)
+    'train': DataLoader(dataload_train(path="dataset/Dog Segmentation", aug=True), batch_size=batch_size, shuffle=True, num_workers=5),
+    'valid': DataLoader(dataload_train(path="dataset/Dog Segmentation", aug=False), batch_size=batch_size, shuffle=False, num_workers=5)
 }
 
 def L1_loss(pred, target):
@@ -70,7 +69,6 @@ if __name__ == '__main__':
 
         for phase in uu:
             if phase == 'train':
-                scheduler.step()
                 model.train()  # Set model to training mode
             else:
                 model.eval()  # Set model to evaluate mode
@@ -99,6 +97,7 @@ if __name__ == '__main__':
                     if phase == 'train':
                         LOSS.backward()
                         optimizer.step()
+                        scheduler.step()
 
                 epoch_samples += inputs.size(0)
             # print_metrics(metrics, epoch_samples, phase)

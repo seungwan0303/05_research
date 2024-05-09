@@ -25,66 +25,6 @@ def gray_to_rgb(gray):
     rgb[:, :, 2] = gray
     return rgb
 
-class CustomDataset(Dataset):
-    def __init__(self, file_path='dataset/Cat&Dog/Train_set', aug=True):
-
-        self.data_info = torchvision.datasets.ImageFolder(root=file_path)
-        # print(len(self.mask_num))
-        self.data_num = int(len(self.data_info))
-        # print(self.data_num)
-        self.path_mtx = np.array(self.data_info.samples)[:, :1].reshape(self.data_num)
-        # all data path loading  [ masks  20 , samples 150]
-        self.images = [Image.open(path) for path in self.path_mtx.reshape(-1)]  # all image loading
-        self.path1D = self.path_mtx.reshape(-1)  # all image path list
-        # print(self.path_mtx)
-        self.aug=aug
-        # self.pow_n = pow_n
-        self.task = file_path
-        # self.H = H
-        # self.W = W
-
-        # augmenation of img and masks
-        # self.mask_trans = transforms.Compose([transforms.Resize((self.H, self.W)),
-        #                                       transforms.Grayscale(1),
-        #                                       transforms.Affine(0, translate=[0,0], scale=1, fillcolor=0),
-        #                                       transforms.ToTensor(),
-        #                                       transforms.Normalize((0.5,), (0.5,))
-        #                                       ])
-        self.col_trans = transforms.Compose([transforms.ColorJitter(brightness=random.random(),
-                                                                    contrast=random.random(),
-                                                                    saturation=random.random(),
-                                                                    hue=random.random() / 2
-                                                                    )
-                                             ])
-
-    def __len__(self):
-        return self.data_num
-
-    def __getitem__(self, idx):
-        data = torch.empty(self.data_num, dtype=torch.float)
-
-        if self.aug==True:
-# self.col_trans.transforms[2].degrees = random.randrange(-5, 5)
-# self.col_trans.transforms[2].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
-# self.col_trans.transforms[2].scale= random.uniform(0.9, 1.1)
-
-            for k in range(0, self.data_num):
-                X = Image.open(self.path_mtx[idx])
-                if k == 0 and self.aug == True:
-                    X = self.col_trans(X)
-            # mask[k] = self.mask_trans(X)
-
-        # input, heat = self.norm(mask[0:1]), mask[1]
-        # heat = torch.pow(heat, self.pow_n)
-        # heat = heat / heat.max()
-
-        # plt.imshow(input[0], cmap='gray');
-        # plt.show()
-        # plt.imshow(heat[0], cmap='gray');
-        # plt.show()
-        # print("idx :", idx, "path ", self.task)
-
-        return data
 
 # UNET parts
 class DoubleConv(nn.Module):

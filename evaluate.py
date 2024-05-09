@@ -1,5 +1,4 @@
 import sys
-
 import joblib
 import numpy as np
 import rasterio
@@ -7,7 +6,6 @@ import os
 import torch
 import pandas as pd
 from matplotlib import pyplot as plt
-
 from utils.dataload import dataload_train
 from torch.utils.data import DataLoader
 from UNet import UNet
@@ -17,18 +15,18 @@ test_csv = 'dataset/Cat&Dog/Test_set'
 test_csv = pd.read_csv(test_csv)
 
 test_list = test_csv.to_numpy()
-test_list[:, 0] = './dataset/Cat&Dog/Test_set/' + test_list[:, 0]
+test_list[:, 0] = 'dataset/Cat&Dog/Test_set' + test_list[:, 0]
 # # print(test_list)
 # sys.exit()
 
-test_dataset = dataload_train(path=test_list, H=256, W=256, aug=False, phase='test')
+test_dataset = dataload_train(path=test_list, aug=False, phase='test')
 train_loader = DataLoader(dataset=test_dataset, batch_size=1)
-device = torch.device('cuda:1')
+device = torch.device('cuda:0')
 sigmoid = torch.nn.Sigmoid()
 
 if __name__ == '__main__':
     model = UNet(10, 1).to(device)
-    model.load_state_dict(torch.load(r'D:\UNET\dataset\Cat&Dog\Test_set'))
+    model.load_state_dict(torch.load(r'D:\05_research\dataset\Cat&Dog\Test_set'))
     model.eval()
 
     pbar = tqdm.tqdm(train_loader)

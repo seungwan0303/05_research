@@ -61,22 +61,22 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 num_classes = 1
 
 if __name__ == '__main__':
-    train_csv = pd.read_csv('dataset/Cat&Dog/Train_set')
+    train_csv = pd.read_csv('dataset/Dog Segmentation')
     x_tr, x_val = train_test_split(train_csv, test_size=0.2, random_state=random_state)
     train_list = x_tr.to_numpy()
-    train_list[:, 0], train_list[:, 1] = 'dataset/Cat&Dog/Train_set/cat' + train_list[:, 0], 'dataset/Cat&Dog/Train_set/dog' + train_list[:, 1]
+    train_list[:, 0], train_list[:, 1] = 'dataset/Dog Segmentation/' + train_list[:, 0], 'dataset/Dog Segmentation' + train_list[:, 1]
     # train_mtx = load_memory(train_list)
     # np.save('./train.npy', train_mtx)
     # del train_mtx
     valid_list = x_val.to_numpy()
-    valid_list[:, 0], valid_list[:, 1] = 'dataset/Cat&Dog/Valid_set/cat' + valid_list[:, 0], 'dataset/Cat&Dog/Valid_set/dog' + valid_list[:, 1]
+    valid_list[:, 0], valid_list[:, 1] = 'dataset/Dog Segmentation' + valid_list[:, 0], 'dataset/Dog Segmentation' + valid_list[:, 1]
     # valid_mtx = load_memory(valid_list)
     # np.save('./valid.npy', valid_mtx)
     # del valid_mtx
     # sys.exit()
 
     train_dataset = dataload_train(path=train_list, aug=True, phase='train')
-    valid_dataset = dataload_train(path=valid_list, aug=False, phase='train')
+    valid_dataset = dataload_train(path=valid_list, aug=False, phase='valid')
 
     dataloaders = {
         'train': DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=True),
