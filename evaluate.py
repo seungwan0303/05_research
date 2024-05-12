@@ -57,9 +57,3 @@ if __name__ == '__main__':
     print(pred_l)
 
     # joblib.dump(pred_l, './y_pred.pkl')
-
-
-
-
-
-
