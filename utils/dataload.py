@@ -9,7 +9,7 @@ from mytransforms import mytransforms
 import numpy as np
 import random
 import torch
-import rasterio
+# import rasterio
 
 class dataload_valid(Dataset):
     def __init__(self, path='dataset/Dog Segmentataion', aug=True, mode='img'):
@@ -52,7 +52,7 @@ class dataload_train(Dataset):
     def __init__(self,  path=None, aug=True, phase='train'):
         self.data_info = datasets.ImageFolder(root=path)
         self.data_num = len(self.data_info)
-        self.path_mtx = np.array(self.data_info.samples)[:, :1].reshape(self.data_num, 1)
+        self.path_mtx = np.array(self.data_info.samples).reshape(self.data_num, 2)
         self.phase = phase
         self.mask_num = int(len(self.path_mtx[0]))
 
@@ -69,26 +69,23 @@ class dataload_train(Dataset):
         return self.data_num
 
     def __getitem__(self, idx):
-        # if self.aug:
-            # self.mask_trans.transforms[0].degrees = random.randrange(-25, 25)
-            # self.mask_trans.transforms[0].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
-            # self.mask_trans.transforms[0].scale = random.uniform(0.9, 1.1)
+        if self.aug:
+            self.mask_trans.transforms[0].degrees = random.randrange(-25, 25)
+            self.mask_trans.transforms[0].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
+            self.mask_trans.transforms[0].scale = random.uniform(0.9, 1.1)
 
         if self.phase == 'train':
             _input = self.path_mtx[idx, 0]
-            _input = np.float32(_input) / 65535
-            print(_input)
-            sys.exit()
+            # print(_input)
+            # sys.exit()
             mask = self.path_mtx[idx, 1]
-            mask = np.float32(mask)
 
         else:
             _input = self.path_mtx[idx, 0]
-            _input = np.float32(_input) / 65535
             _input = self.mask_trans(_input)
             return _input
 
-        _input, mask = self.mask_trans(_input), self.mask_trans(mask)
+        mask = self.mask_trans(mask)
         _input, mask = self.col_trans(_input), self.col_trans(mask)
         _input, mask = self.norm(_input), self.norm(mask)
 
