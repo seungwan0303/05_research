@@ -1,7 +1,7 @@
 import os
 import sys
 
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import tqdm
 from PIL import Image
 import numpy as np
@@ -43,12 +43,12 @@ def L2_loss(pred, target):
     metrics['loss'] += loss.data.cpu().numpy() * target.size(0)
     return loss
 
-device_txt = "cuda:1"
+device_txt = "cuda:0"
 device = torch.device(device_txt if torch.cuda.is_available() else "cpu")
 num_class = 1
 
 if __name__ == '__main__':
-    model = network.UNet(1, num_class).to(device)
+    model = network.UNet(2, num_class).to(device)
 
     num_epochs = 1000
     optimizer = optim.Adam(model.parameters(), lr=0.001)

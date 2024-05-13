@@ -85,7 +85,7 @@ class dataload_train(Dataset):
             _input = self.mask_trans(_input)
             return _input
 
-        mask = self.mask_trans(mask)
+        # mask = self.mask_trans(mask)
         _input, mask = self.col_trans(_input), self.col_trans(mask)
         _input, mask = self.norm(_input), self.norm(mask)
 
