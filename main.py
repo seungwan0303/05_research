@@ -14,7 +14,7 @@ from torchvision import transforms, datasets, models
 from PIL import Image
 import random
 
-from utils.dataload import dataload_train
+from utils.dataload import *
 from net import *
 import net as network
 from collections import defaultdict
@@ -29,8 +29,8 @@ data_path = "dataset/Dog Segmentation"
 batch_size = 16
 
 Dataloaders = {
-    'train': DataLoader(dataload_train(path="dataset/Dog Segmentation", aug=True), batch_size=batch_size, shuffle=True, num_workers=5),
-    'valid': DataLoader(dataload_train(path="dataset/Dog Segmentation", aug=False), batch_size=batch_size, shuffle=False, num_workers=5)
+    'train': DataLoader(dataload_train(path=data_path, aug=True), batch_size=batch_size, shuffle=True, num_workers=5),
+    'valid': DataLoader(dataload_train(path=data_path, aug=False), batch_size=batch_size, shuffle=False, num_workers=5)
 }
 
 def L1_loss(pred, target):
@@ -43,9 +43,9 @@ def L2_loss(pred, target):
     metrics['loss'] += loss.data.cpu().numpy() * target.size(0)
     return loss
 
-device_txt = "cuda:0"
+device_txt = "cuda"
 device = torch.device(device_txt if torch.cuda.is_available() else "cpu")
-num_class = 1
+num_class = 2
 
 if __name__ == '__main__':
     model = network.UNet(2, num_class).to(device)
@@ -105,7 +105,7 @@ if __name__ == '__main__':
             if (epoch + 1) % 5 == 0:
                 a = outputs[0].cpu().detach().numpy()
                 x5 = x5.cpu().detach().numpy()
-                # a = np.sum(a, axis=0)
+                a = np.sum(a, axis=0)
                 plt.imshow(a[0], cmap='gray')
                 plt.show()
                 plt.imshow(x5, cmap='gray')
