@@ -70,22 +70,31 @@ class dataload_train(Dataset):
 
 
     def __len__(self):
-        return self.data_num
+        return self.mask_num
 
     def __getitem__(self, idx):
         if self.aug:
-            self.mask_trans.transforms[0].degrees = random.randrange(-25, 25)
-            self.mask_trans.transforms[0].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
-            self.mask_trans.transforms[0].scale = random.uniform(0.9, 1.1)
+            self.mask_trans.transforms[1].degrees = random.randrange(-25, 25)
+            self.mask_trans.transforms[1].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
+            self.mask_trans.transforms[1].scale = random.uniform(0.9, 1.1)
 
         if self.phase == 'train':
-            _input = self.path_mtx[0, idx+1]
-            mask = self.path_mtx[1, idx+1]
+            # print(self.path_mtx.shape)
+            # print('pathmtx', self.path_mtx[0])
+
+            _input = Image.open(self.path_mtx[0, idx])
+            # print(_input)
+            # print(type(_input))
+            # sys.exit()
+            mask = Image.open(self.path_mtx[1, idx])
 
         else:
             _input = self.path_mtx[0, idx+1]
             _input = self.mask_trans(_input)
             return _input
+
+        # print(type(_input))
+        # print(type(mask))
 
         _input, mask = self.mask_trans(_input), self.mask_trans(mask)
         _input, mask = self.col_trans(_input), mask

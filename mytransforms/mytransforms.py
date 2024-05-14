@@ -1,8 +1,11 @@
 from __future__ import division
-import torch
+
 import math
 import random
-from PIL import Image, ImageOps, ImageEnhance, PILLOW_VERSION
+
+import torch
+from PIL import Image
+
 try:
     import accimage
 except ImportError:
@@ -105,7 +108,7 @@ class HorizontalFlip(object):
         self.p = p
 
     def __call__(self, img):
-        if 0.5< self.p:
+        if 0.5 < self.p:
             return F.hflip(img)
         return img
 

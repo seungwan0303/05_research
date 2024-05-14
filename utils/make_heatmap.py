@@ -13,7 +13,7 @@ coordinateMtx[:, :, 0] = np.tile(np.arange(h).reshape(h, 1), (1, w))
 coordinateMtx[:, :, 1] = np.tile(np.arange(w), (h, 1))
 
 
-def Laplace(center, sigmaD=None):  # Gaussian Filter
+def Laplace(center, sigmaD = None):  # Gaussian Filter
     center_x, center_y = center
     center_mtx = np.ones((h, w, 2))
     center_mtx[:, :, 0] *= center_y

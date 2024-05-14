@@ -43,12 +43,12 @@ def L2_loss(pred, target):
     metrics['loss'] += loss.data.cpu().numpy() * target.size(0)
     return loss
 
-device_txt = "cuda"
+device_txt = "cuda:0"
 device = torch.device(device_txt if torch.cuda.is_available() else "cpu")
 num_class = 2
 
 if __name__ == '__main__':
-    model = network.UNet(2, num_class).to(device)
+    model = UNet(3, num_class).to(device)
 
     num_epochs = 1000
     optimizer = optim.Adam(model.parameters(), lr=0.001)
@@ -86,7 +86,7 @@ if __name__ == '__main__':
                 # forward
                 with torch.set_grad_enabled(phase == 'train'):
                     # Forward computation
-                    outputs, x5 = model(inputs)
+                    outputs = model(inputs)
 
                     # outputs = torch.sigmoid(outputs)
                     LOSS = L2_loss(outputs, labels)
@@ -104,11 +104,8 @@ if __name__ == '__main__':
 
             if (epoch + 1) % 5 == 0:
                 a = outputs[0].cpu().detach().numpy()
-                x5 = x5.cpu().detach().numpy()
                 a = np.sum(a, axis=0)
-                plt.imshow(a[0], cmap='gray')
-                plt.show()
-                plt.imshow(x5, cmap='gray')
+                plt.imshow(a, cmap='gray')
                 plt.show()
 
             pbar.close()
