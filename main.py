@@ -70,6 +70,7 @@ if __name__ == '__main__':
         for phase in uu:
             if phase == 'train':
                 model.train()  # Set model to training mode
+                scheduler.step()
             else:
                 model.eval()  # Set model to evaluate mode
 
@@ -97,7 +98,6 @@ if __name__ == '__main__':
                     if phase == 'train':
                         LOSS.backward()
                         optimizer.step()
-                        scheduler.step()
 
                 epoch_samples += inputs.size(0)
             # print_metrics(metrics, epoch_samples, phase)
@@ -115,7 +115,7 @@ if __name__ == '__main__':
                 lrrate = param_group['lr']
             print(phase, "Joint loss :", epoch_Jointloss.item(), 'lr rate', lrrate)
             # deep copy the model
-            savepath = 'model/net_{}_E_{}.pt'
+            savepath = 'models/net_{}_E_{}.pt'
             if phase == 'valid' and epoch_Jointloss < best_loss:
                 print("saving best model")
                 best_loss = epoch_Jointloss
