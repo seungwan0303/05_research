@@ -9,7 +9,6 @@ from mytransforms import mytransforms
 import numpy as np
 import random
 import torch
-import rasterio
 
 # class dataload_valid(Dataset):
 #     def __init__(self, path='', aug=False, mode='img'):
