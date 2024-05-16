@@ -16,8 +16,6 @@ test_csv = pd.read_csv(test_csv)
 
 test_list = test_csv.to_numpy()
 test_list[:, 0] = 'Dog Segmentation/Images' + test_list[:, 0]
-# # print(test_list)
-# sys.exit()
 
 test_dataset = dataload_train(path=test_list, aug=False, phase='test')
 train_loader = DataLoader(dataset=test_dataset, batch_size=1)
@@ -42,8 +40,6 @@ if __name__ == '__main__':
         segmentation_map = sigmoid(outputs)
 
         segmentation_map = segmentation_map.detach().cpu().numpy()
-        # print(outputs.shape)
-        # sys.exit()
         segmentation_map = np.where(segmentation_map[0, 0] > 0.8, 1, 0)
         pred = segmentation_map.astype(np.uint8)
         img_idx = str(test_list[i, 0]).rfind('/')
@@ -55,5 +51,3 @@ if __name__ == '__main__':
         i += 1
 
     print(pred_l)
-
-    # joblib.dump(pred_l, './y_pred.pkl')

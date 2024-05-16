@@ -76,19 +76,7 @@ class UNet(nn.Module):
         self.n_channels = n_channels
         self.n_classes = n_classes
         factor = 2
-        # print(factor)
 
-        # self.inc = DoubleConv(n_channels, 16)
-        # self.down1 = Down(16, 32)
-        # self.down2 = Down(32, 64)
-        # self.down3 = Down(64, 128)
-        # self.down4 = Down(128, 256)
-        # self.down4 = Down(256, 256)
-        # self.up1 = Up(256, 128)
-        # self.up2 = Up(128, 64)
-        # self.up3 = Up(64, 32)
-        # self.up4 = Up(32, 16)
-        # self.outc = OutConv(16, n_classes)
         self.inc = DoubleConv(n_channels, 64)
         self.down1 = Down(64, 128)
         self.down2 = Down(128, 256)

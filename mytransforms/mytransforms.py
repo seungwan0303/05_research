@@ -168,8 +168,6 @@ class Affine(object):
 
         @staticmethod
         def get_params(degrees, translate, scale_ranges, shears, img_size):
-            # print(type(degrees), type(translate), type(scale_ranges), type(shears), type(img_size))
-            # print('-------')
             """Get parameters for affine transformation
 
             Returns:

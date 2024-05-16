@@ -5,47 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b381aec-238b-4d02-8d9d-e0567efea505" name="변경" comment="Final">
-      <change afterPath="$PROJECT_DIR$/models/net_0.04522516950964928_E_329.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.045321106910705566_E_319.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.04546009376645088_E_299.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.04600108042359352_E_259.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.04682302102446556_E_239.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.04732019826769829_E_219.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.047729089856147766_E_209.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.04849335923790932_E_199.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.04878232255578041_E_189.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.04933994263410568_E_169.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.049841076135635376_E_149.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.050324711948633194_E_139.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05079595744609833_E_129.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05105610191822052_E_119.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05136102810502052_E_89.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05136174336075783_E_109.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05171625316143036_E_99.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.051824815571308136_E_79.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05199187248945236_E_89.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.052051279693841934_E_79.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.052536267787218094_E_59.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05279892310500145_E_49.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05281379073858261_E_59.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05335744470357895_E_49.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05361197888851166_E_39.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05382538586854935_E_39.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05404215678572655_E_29.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05404340475797653_E_29.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.055784665048122406_E_19.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.057417403906583786_E_19.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05754696577787399_E_9.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.057794228196144104_E_9.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.058227233588695526_E_9.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05825979635119438_E_9.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/net_0.05961594730615616_E_9.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/net_0.05152209848165512_E_99.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/net_0.05185232684016228_E_79.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/net_0.05252457410097122_E_59.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/net_0.052706412971019745_E_49.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/net_0.05330261215567589_E_39.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/net_0.054585255682468414_E_29.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/net_0.055396441370248795_E_19.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/net_0.05793662741780281_E_9.pt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mytransforms/mytransforms.py" beforeDir="false" afterPath="$PROJECT_DIR$/mytransforms/mytransforms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/net.py" beforeDir="false" afterPath="$PROJECT_DIR$/net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +158,8 @@
       <workItem from="1715089975597" duration="1357000" />
       <workItem from="1715139757730" duration="28164000" />
       <workItem from="1715817750005" duration="13744000" />
-      <workItem from="1715841052567" duration="1125000" />
+      <workItem from="1715841052567" duration="1590000" />
+      <workItem from="1715843076232" duration="2673000" />
     </task>
     <task id="LOCAL-00001" summary="Delete unet.py">
       <created>1715089668303</created>
@@ -255,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715836426566</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Final">
+      <created>1715842558630</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715842558630</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +273,7 @@
     <SUITE FILE_PATH="coverage/05_research$train.coverage" NAME="train Coverage Results" MODIFIED="1715233124086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/05_research$dataload.coverage" NAME="dataload Coverage Results" MODIFIED="1715659093169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/05_research$net.coverage" NAME="net Coverage Results" MODIFIED="1715147246140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/05_research$main.coverage" NAME="main Coverage Results" MODIFIED="1715841055813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/05_research$main.coverage" NAME="main Coverage Results" MODIFIED="1715843160458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/05_research$UNet.coverage" NAME="UNet Coverage Results" MODIFIED="1715140507846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

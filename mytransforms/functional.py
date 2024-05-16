@@ -169,7 +169,6 @@ def normalize(tensor, mean, std):
         t.sub_(m).div_(s)
     return tensor
 
-
 def resize(img, size, interpolation=Image.BILINEAR):
     """Resize the input PIL Image to the given size.
 
@@ -279,7 +278,6 @@ def pad(img, padding, fill=0, padding_mode='constant'):
             img = np.pad(img, ((pad_top, pad_bottom), (pad_left, pad_right)), padding_mode)
 
         return Image.fromarray(img)
-
 
 def crop(img, i, j, h, w):
     """Crop the given PIL Image.

@@ -69,8 +69,9 @@ if __name__ == '__main__':
 
         for phase in uu:
             if phase == 'train':
-                model.train()  # Set model to training mode
                 scheduler.step()
+                model.train()  # Set model to training mode
+
             else:
                 model.eval()  # Set model to evaluate mode
 
@@ -100,7 +101,6 @@ if __name__ == '__main__':
                         optimizer.step()
 
                 epoch_samples += inputs.size(0)
-            # print_metrics(metrics, epoch_samples, phase)
 
             if (epoch + 1) % 5 == 0:
                 a = outputs[0].cpu().detach().numpy()
