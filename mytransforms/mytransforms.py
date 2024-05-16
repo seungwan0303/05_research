@@ -2,7 +2,6 @@ from __future__ import division
 
 import math
 import random
-
 import torch
 from PIL import Image
 

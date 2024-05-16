@@ -8,14 +8,14 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from utils.dataload import dataload_train
 from torch.utils.data import DataLoader
-from UNet import UNet
+import net as network
 import tqdm
 
-test_csv = 'dataset/Cat&Dog/Test_set'
+test_csv = 'Dog Segmentation/Images'
 test_csv = pd.read_csv(test_csv)
 
 test_list = test_csv.to_numpy()
-test_list[:, 0] = 'dataset/Cat&Dog/Test_set' + test_list[:, 0]
+test_list[:, 0] = 'Dog Segmentation/Images' + test_list[:, 0]
 # # print(test_list)
 # sys.exit()
 
@@ -25,8 +25,8 @@ device = torch.device('cuda:0')
 sigmoid = torch.nn.Sigmoid()
 
 if __name__ == '__main__':
-    model = UNet(10, 1).to(device)
-    model.load_state_dict(torch.load(r'D:\05_research\dataset\Cat&Dog\Test_set'))
+    model = network.UNet(1, 1).to(device)
+    model.load_state_dict(torch.load('Dog Segmentation/Images'))
     model.eval()
 
     pbar = tqdm.tqdm(train_loader)

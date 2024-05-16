@@ -1,5 +1,5 @@
 import torch
-import UNet as network
+import net as network
 
 def argsoftmax(x, index, beta=1e-2):
     a = torch.exp(-torch.abs(x - x.max(dim=1).values.unsqueeze(1)) / beta)
