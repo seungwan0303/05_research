@@ -45,10 +45,10 @@ def L2_loss(pred, target):
 
 device_txt = "cuda:0"
 device = torch.device(device_txt if torch.cuda.is_available() else "cpu")
-num_class = 2
+num_class = 1
 
 if __name__ == '__main__':
-    model = UNet(3, num_class).to(device)
+    model = network.UNet(1, num_class).to(device)
 
     num_epochs = 1000
     optimizer = optim.Adam(model.parameters(), lr=0.001)
@@ -89,8 +89,8 @@ if __name__ == '__main__':
                     # Forward computation
                     outputs = model(inputs)
 
-                    # outputs = torch.sigmoid(outputs)
-                    LOSS = L2_loss(outputs, labels)
+                    outputs = torch.sigmoid(outputs)
+                    LOSS = L1_loss(outputs, labels)
 
                     metrics['Jointloss'] += LOSS
 

@@ -62,6 +62,7 @@ class dataload_train(Dataset):
         self.aug=aug
 
         self.mask_trans = transforms.Compose([transforms.Resize((224, 224)),
+                                              transforms.Grayscale(1),
                                               mytransforms.Affine(0, translate=[0, 0], scale=1, fillcolor=0),
                                               transforms.ToTensor()])
         self.col_trans = transforms.Compose([transforms.ColorJitter(brightness=random.random())])
@@ -73,9 +74,9 @@ class dataload_train(Dataset):
 
     def __getitem__(self, idx):
         if self.aug:
-            self.mask_trans.transforms[1].degrees = random.randrange(-25, 25)
-            self.mask_trans.transforms[1].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
-            self.mask_trans.transforms[1].scale = random.uniform(0.9, 1.1)
+            self.mask_trans.transforms[2].degrees = random.randrange(-25, 25)
+            self.mask_trans.transforms[2].translate = [random.uniform(0, 0.05), random.uniform(0, 0.05)]
+            self.mask_trans.transforms[2].scale = random.uniform(0.9, 1.1)
 
         if self.phase == 'train':
             # print(self.path_mtx.shape)
